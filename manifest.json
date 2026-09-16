@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "Enfocador 3000",
+    "version": "3.0",
+    "description": "Oculta contenido distractor para ayudarte a concentrarte.",
+
+    "permissions": [
+        "storage"
+    ],
+
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_title": "Focus Mode"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.youtube.com/*"
+            ],
+            "js": [
+                "content/youtube.js"
+            ]
+        },
+        {
+            "matches": [
+                "*://www.instagram.com/*"
+            ],
+            "js": [
+                "content/instagram.js"
+            ]
+        }
+    ]
+}
