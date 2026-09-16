@@ -1,25 +1,30 @@
+// ===== instagram.js =====
 let hideReels = true;
+let extensionEnabled = true;
 
-// Cargar configuración
 chrome.storage.sync.get(
     {
-        hideReels: true 
+        hideReels: true,
+        extensionEnabled: true
     },
     function (data) {
         hideReels = data.hideReels;
-
+        extensionEnabled = data.extensionEnabled;
         actualizarInstagram();
     }
 );
 
-
-// Escuchar cambios en la configuración
 chrome.storage.onChanged.addListener(
     function (changes, area) {
-        if(area === "sync" && changes.hideReels){
+        if (area !== "sync") return;
+
+        if (changes.hideReels) {
             hideReels = changes.hideReels.newValue;
-            actualizarInstagram();
         }
+        if (changes.extensionEnabled) {
+            extensionEnabled = changes.extensionEnabled.newValue;
+        }
+        actualizarInstagram();
     }
 );
 
@@ -28,29 +33,28 @@ function actualizarInstagram() {
         ['a[href^="/reels/"]', 'a[href^="/reel/"]'].join(",")
     );
 
+    const debeOcultar = extensionEnabled && hideReels;
+
     reels.forEach(function (elemento) {
-        if (hideReels) {
-            elemento.style.display = "none";
-        } else {
-            elemento.style.display = "";
-        }
+        elemento.style.display = debeOcultar ? "none" : "";
     });
 }
 
-
-// YouTube agrega contenido dinámicamente
-const observer = new MutationObserver(
+// Instagram agrega contenido dinámicamente
+const instagramObserver = new MutationObserver(
     function () {
-        if (hideReels) {
+        if (extensionEnabled && hideReels) {
             actualizarInstagram();
         }
     }
 );
 
-observer.observe(
-    document.body,
-    {
-        childList: true,
-        subtree: true
+function iniciarObservadorInstagram() {
+    if (!document.body) {
+        document.addEventListener("DOMContentLoaded", iniciarObservadorInstagram, { once: true });
+        return;
     }
-);
+    instagramObserver.observe(document.body, { childList: true, subtree: true });
+}
+
+iniciarObservadorInstagram();

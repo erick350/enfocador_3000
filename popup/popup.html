@@ -2,12 +2,54 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Modo Concentracion</title>
+        <title>Enfocador 3000</title>
 
         <link rel="stylesheet" href="popup.css">
     </head>
 
     <body>
+
+        <!-- INTERRUPTOR MAESTRO -->
+        <div class="container master">
+            <div class="option">
+                <div>
+                    <h1 style="margin:0;">Enfocador 3000</h1>
+                    <p id="masterEstado">Activado</p>
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox" id="masterToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- MODO ESTUDIO (POMODORO) -->
+        <div class="container">
+            <h1>⏱️ Modo Estudio</h1>
+
+            <p id="pomodoroEstado" class="estado-grande">Inactivo</p>
+
+            <div class="pomodoro-inputs">
+                <div class="input-group">
+                    <label for="studyMinutes">Estudio (min)</label>
+                    <input type="number" id="studyMinutes" min="1" value="25">
+                </div>
+                <div class="input-group">
+                    <label for="breakMinutes">Descanso (min)</label>
+                    <input type="number" id="breakMinutes" min="1" value="5">
+                </div>
+            </div>
+
+            <div class="pomodoro-botones">
+                <button id="btnIniciar" class="btn btn-primario">Iniciar</button>
+                <button id="btnDetener" class="btn btn-secundario">Detener</button>
+            </div>
+
+            <p class="nota">Mientras esté en fase de estudio, YouTube, Instagram y Facebook quedarán bloqueados por completo.</p>
+        </div>
+
+        <!-- YOUTUBE -->
         <div class="container">
             <h1>YouTube</h1>
 
@@ -23,6 +65,8 @@
                 </label>
             </div>
         </div>
+
+        <!-- INSTAGRAM -->
         <div class="container">
             <h1>Instagram</h1>
 
@@ -34,6 +78,23 @@
 
                 <label class="switch">
                     <input type="checkbox" id="reelsToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- FACEBOOK -->
+        <div class="container">
+            <h1>Facebook</h1>
+
+            <div class="option">
+                <div>
+                    <h2>Ocultar Reels</h2>
+                    <p>Oculta los reels para reducir distracciones</p>
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox" id="reelsFToggle">
                     <span class="slider"></span>
                 </label>
             </div>

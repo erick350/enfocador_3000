@@ -2,15 +2,34 @@ body {
     width: 320px;
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #fafafa;
 }
 
 .container {
-    padding: 20px;
+    padding: 18px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.container:last-child {
+    border-bottom: none;
+}
+
+.container.master {
+    background: #1f1f1f;
+    color: white;
+}
+
+.container.master p {
+    color: #bbb;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 25px;
+    font-size: 17px;
+    margin: 0 0 12px;
+}
+
+.master h1 {
+    margin: 0;
 }
 
 .option {
@@ -20,23 +39,111 @@ h1 {
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 15px;
     margin: 0;
 }
 
 p {
-    font-size: 13px;
+    font-size: 12px;
     color: gray;
+    margin: 4px 0 0;
 }
 
+.nota {
+    font-size: 11px;
+    color: #999;
+    margin-top: 10px;
+    line-height: 1.4;
+}
 
-/* SWITCH */
+/* ===== POMODORO ===== */
+
+.estado-grande {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    text-align: center;
+    margin: 6px 0 14px;
+}
+
+.pomodoro-inputs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 11px;
+    color: gray;
+    margin-bottom: 4px;
+}
+
+.input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.pomodoro-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 9px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primario {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-primario:hover {
+    background: #43a047;
+}
+
+.btn-primario:disabled {
+    background: #a5d6a7;
+    cursor: not-allowed;
+}
+
+.btn-secundario {
+    background: #eee;
+    color: #333;
+}
+
+.btn-secundario:hover {
+    background: #e0e0e0;
+}
+
+.btn-secundario:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ===== SWITCH ===== */
 
 .switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 25px;
+    flex-shrink: 0;
 }
 
 .switch input {
@@ -62,7 +169,6 @@ p {
 }
 
 .slider::before {
-
     position: absolute;
 
     content: "";
